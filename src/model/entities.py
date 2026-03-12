@@ -29,3 +29,33 @@ class Cell:  # Клас Клетка
     def reset(self) -> None:  # Сбросить клетку
         self.__marker = MARKER_EMPTY
 
+
+class Field:  # Клас Поле
+
+    __rows: int
+    __columns: int
+    __cells: list[list[Cell]]
+
+    def __init__(self, rows: int, columns: int):
+        self.__rows = rows  # Строки поля
+        self.__columns = columns  # Столбцы поля
+
+        self.__cells = []
+
+    def create(self):  # Создаем поле
+
+        for i in range(0, self.__rows):
+            self.__cells.append([])
+
+            for j in range(0, self.__columns):
+                cell = Cell(i, j)
+                self.__cells[i].append(cell)
+
+    def reset(self):  # Откатываем поле (обнуляем для новой игры)
+
+        for i in range(0, self.__rows):
+            for j in range(0, self.__columns):
+                self.__cells[i][j].reset()
+
+    def make_move(self):  # Делаем ход (в поле)
+        pass
